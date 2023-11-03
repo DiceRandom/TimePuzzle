@@ -1,2 +1,10 @@
 # TimePuzzle
-Time Puzzle Game
+
+![Screenshot](public/screenshot.png)
+
+
+# TODO
+- [ ] ghost box
+- [ ] ghost walls
+- [ ] ghost mobs
+
