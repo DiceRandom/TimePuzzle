@@ -7,33 +7,31 @@ public class Spinner : MonoBehaviour
 
     public Vector3 rotator;
     public float speed;
-    
 
-    // Start is called before the first frame update
+    public bool Disabled
+    {
+        get {return _disabled;}
+        set {_disabled = value;}
+    }
+    private bool _disabled;
+
     void Start()
     {
-        
+        float storedSpeed = speed;
+        PauseHandler.Instance.AddPauseEvent(() =>{
+            this.speed = 0;
+        });
+
+        PauseHandler.Instance.AddUnpauseEvent(() =>{
+            this.speed = storedSpeed;
+        });
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_paused) return;
+        if(_disabled) return;
+
         transform.Rotate(rotator*speed*Time.deltaTime);
     }
-
-    public void Disable(){
-        speed = 0;
-    }
-
-
-
-    public bool Paused
-    {
-        get { return _paused; }
-        set
-        {_paused = value; }
-    }
-
-    private bool _paused;
 }
